@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NR Car Repair | Professionele Autoservice</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#e10600;
+  --dark:#0b0b0d;
+  --soft:#151519;
+  --text:#e5e5e5;
+  --muted:#9c9c9c;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--dark);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ================= NAV ================= */
+
+header{
+  position:fixed;
+  width:100%;
+  padding:22px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+  transition:0.4s ease;
+}
+
+header.scrolled{
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(10px);
+}
+
+.logo img{
+  height:75px;
+  transition:0.3s ease;
+}
+
+header.scrolled .logo img{
+  height:65px;
+}
+
+nav{
+  display:flex;
+  gap:40px;
+}
+
+nav a{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:500;
+  position:relative;
+}
+
+nav a::after{
+  content:'';
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:-6px;
+  left:0;
+  background:var(--primary);
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* Hamburger */
+.menu-toggle{
+  display:none;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  height:80vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  padding:0 8%;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),
+  url('hero.jpg') center 30% / cover no-repeat;
+  animation: heroZoom 12s ease-in-out infinite alternate;
+  z-index:-1;
+}
+
+@keyframes heroZoom{
+  from{ transform:scale(1); }
+  to{ transform:scale(1.05); }
+}
+
+.hero-content{
+  max-width:700px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.hero-content.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.hero h1{
+  font-size:64px;
+  margin-bottom:25px;
+  line-height:1.1;
+}
+
+.hero p{
+  color:var(--muted);
+  margin-bottom:40px;
+}
+
+.btn{
+  padding:15px 35px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:500;
+  display:inline-block;
+  margin-right:15px;
+  margin-bottom:10px;
+  transition:0.3s;
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:white;
+}
+
+.btn-outline{
+  border:2px solid white;
+  color:white;
+}
+
+.btn-outline:hover{
+  background:white;
+  color:black;
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+  padding:120px 8%;
+}
+
+.section-title{
+  text-align:center;
+  font-size:40px;
+  margin-bottom:70px;
+}
+
+/* Scroll reveal */
+.fade-in{
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s ease;
+}
+
+.fade-in.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+.service-card{
+  background:var(--soft);
+  padding:45px;
+  border-radius:18px;
+  transition:0.4s ease;
+}
+
+.service-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 25px 50px rgba(0,0,0,0.6);
+}
+
+.service-card p{
+  color:var(--muted);
+}
+
+.why{
+  background:#000;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+
+.why-image img{
+  width:100%;
+  border-radius:20px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.6);
+}
+
+#contact{
+  padding:70px 8%;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:60px;
+}
+
+.contact-grid p{
+  color:var(--muted);
+}
+
+footer{
+  background:#000;
+  padding:40px 8%;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+/* ================= MOBILE FIX ================= */
+
+@media(max-width:768px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  nav{
+    position:fixed;
+    top:0;
+    right:-100%;
+    height:100vh;
+    width:70%;
+    background:#111;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    transition:0.4s;
+  }
+
+  nav.active{
+    right:0;
+  }
+
+  nav a{
+    font-size:22px;
+  }
+
+  .hero{
+    height:auto;
+    padding-top:120px;
+    padding-bottom:80px;
+  }
+
+  .hero h1{
+    font-size:36px;
+  }
+
+  .btn{
+    width:100%;
+    text-align:center;
+    margin-right:0;
+  }
+
+  .services-grid{
+    grid-template-columns:1fr;
+  }
+
+  .why{
+    grid-template-columns:1fr;
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="logo">
+    <img src="logo.png" alt="NR Car Repair logo">
+  </div>
+
+  <div class="menu-toggle" id="menuToggle">☰</div>
+
+  <nav id="navMenu">
+    <a href="#home">Home</a>
+    <a href="#services">Onze diensten</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content" id="heroText">
+    <h1>Uw auto.<br>Onze expertise.</h1>
+    <p>Professionele reparatie, onderhoud en APK voor alle moderne voertuigen.</p>
+    <a href="#services" class="btn btn-primary">Onze diensten</a>
+    <a href="#contact" class="btn btn-outline">Contact</a>
+  </div>
+</section>
+
+<section id="services">
+  <h2 class="section-title fade-in">Onze diensten</h2>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <h3>Onderhoud</h3>
+      <p>Complete onderhoudsbeurten voor optimale prestaties en veiligheid.</p>
+    </div>
+    <div class="service-card fade-in">
+      <h3>APK keuring</h3>
+      <p>Snelle en betrouwbare keuring volgens wettelijke normen.</p>
+    </div>
+    <div class="service-card fade-in">
+      <h3>Reparaties</h3>
+      <p>Van kleine defecten tot complexe technische problemen.</p>
+    </div>
+    <div class="service-card fade-in">
+      <h3>Diagnose</h3>
+      <p>Moderne diagnoseapparatuur voor nauwkeurige analyse.</p>
+    </div>
+  </div>
+</section>
+
+<section class="why fade-in">
+  <div class="why-text">
+    <h2>Waarom NR Car Repair?</h2>
+    <p>Wij combineren vakmanschap met transparantie en persoonlijke service. Geen verrassingen, alleen kwaliteit.</p>
+    <ul>
+      <li>✔ Ervaren monteurs</li>
+      <li>✔ Eerlijke prijzen</li>
+      <li>✔ Moderne apparatuur</li>
+      <li>✔ Snelle service</li>
+    </ul>
+  </div>
+  <div class="why-image">
+    <img src="waarom.jpg" alt="Team monteurs">
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title fade-in">Contact</h2>
+  <div class="contact-grid fade-in">
+    <div>
+      <p>📍 Wachthoevestraat 14, 3209BK Spijkenisse</p>
+      <p>📞 0181-657566</p>
+      <p>📧 nico@nrcarrepair.nl</p>
+    </div>
+    <div>
+  <p>Maandag: 8:30 - 17:00</p>
+  <p>Dinsdag: 8:30 - 17:00</p>
+  <p>Woensdag: 8:30 - 17:00</p>
+  <p>Donderdag: 8:30 - 17:00</p>
+  <p>Vrijdag: 8:30 - 17:00</p>
+  <p>Zaterdag: Gesloten</p>
+  <p>Zondag: Gesloten</p>
+</div>
+</section>
+
+<footer>
+  <p>© 2026 NR Car Repair</p>
+</footer>
+
+<script>
+
+// Navbar scroll effect
+window.addEventListener("scroll",function(){
+  document.getElementById("header")
+  .classList.toggle("scrolled",window.scrollY>50);
+});
+
+// Hero load animation
+window.addEventListener("load",function(){
+  document.getElementById("heroText")
+  .classList.add("active");
+});
+
+// Scroll reveal
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("active");
+    }
+  });
+},{threshold:0.2});
+
+document.querySelectorAll(".fade-in")
+.forEach(el=>observer.observe(el));
+
+// Mobile menu
+document.getElementById("menuToggle")
+.addEventListener("click",function(){
+  document.getElementById("navMenu")
+  .classList.toggle("active");
+});
+
+</script>
+
+</body>
+</html>
